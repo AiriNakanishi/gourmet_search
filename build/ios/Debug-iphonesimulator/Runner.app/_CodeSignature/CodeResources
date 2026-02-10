@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		EqYXt5ozhl5Gi/LmuhytpyqtC5g=
+		R7E37o2CAylgb0muWcuLTH0YGbg=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		l1FEd8JYzyy6tDqNFS5WQjV0rpw=
+		i0zG59wrhQ5E9sA6+lbBcwfl8fo=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		uPzJnKjRrXMO1N3vHufQIpCoTDc=
+		S+2w0bl3ZHzSsiTzjojAg7zpOsQ=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NativeAssetsManifest.json</key>
 		<data>
@@ -86,7 +86,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		6hnUwB85h56mSQwI3ikQjt2280Y=
+		r3ZIDlV6Q2m+Bj7kAIXq1h69Q2Y=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -202,11 +202,67 @@
 		</data>
 		<key>Runner.debug.dylib</key>
 		<data>
-		MpdB997CT0Bm/gYP+v+2jnp2oYk=
+		4SEtpxOrTz60AYL6fgOug0fiKGE=
 		</data>
 		<key>__preview.dylib</key>
 		<data>
 		gXHiGFrKz18+duJHn+z+CVy980E=
+		</data>
+		<key>geolocator_apple_geolocator_apple.bundle/Info.plist</key>
+		<data>
+		cJTpEYL8BsBd347QcZAmi1QZK7Q=
+		</data>
+		<key>geolocator_apple_geolocator_apple.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		KFiVi4mWKmBFkTjfe3H4jsOvLNM=
+		</data>
+		<key>geolocator_apple_geolocator_apple.bundle/_CodeSignature/CodeDirectory</key>
+		<data>
+		DA+0Db3t7M9ZrXNhvFrY+Xuz8pw=
+		</data>
+		<key>geolocator_apple_geolocator_apple.bundle/_CodeSignature/CodeRequirements</key>
+		<data>
+		OnX22wWFKRSOFN1+obRynMCeyXM=
+		</data>
+		<key>geolocator_apple_geolocator_apple.bundle/_CodeSignature/CodeRequirements-1</key>
+		<data>
+		BculHXa2O5qKLZLQrXG7qT8yuGg=
+		</data>
+		<key>geolocator_apple_geolocator_apple.bundle/_CodeSignature/CodeResources</key>
+		<data>
+		E/810XPHG0VQhCZtCKt3T9ZvP7g=
+		</data>
+		<key>geolocator_apple_geolocator_apple.bundle/_CodeSignature/CodeSignature</key>
+		<data>
+		2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+		</data>
+		<key>package_info_plus_package_info_plus.bundle/Info.plist</key>
+		<data>
+		YClkJzgwRmlpiJhgzO/A+gt+OfE=
+		</data>
+		<key>package_info_plus_package_info_plus.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		/LX0ZlwxwIAIhjZaDB8EiH5KpXA=
+		</data>
+		<key>package_info_plus_package_info_plus.bundle/_CodeSignature/CodeDirectory</key>
+		<data>
+		5Iy9DdBBgbAGUkr2cgYgxnqMUZw=
+		</data>
+		<key>package_info_plus_package_info_plus.bundle/_CodeSignature/CodeRequirements</key>
+		<data>
+		OnX22wWFKRSOFN1+obRynMCeyXM=
+		</data>
+		<key>package_info_plus_package_info_plus.bundle/_CodeSignature/CodeRequirements-1</key>
+		<data>
+		iOhn4K9+OBteeZv0YIP42bpstsI=
+		</data>
+		<key>package_info_plus_package_info_plus.bundle/_CodeSignature/CodeResources</key>
+		<data>
+		XbCjjkrbnWexARRCSJrHIUTRgrU=
+		</data>
+		<key>package_info_plus_package_info_plus.bundle/_CodeSignature/CodeSignature</key>
+		<data>
+		2jmj7l5rSw0yVb/vlWAYkK/YBwk=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -285,7 +341,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			aiBictLZ0aYZmY3LgCgNlMPX1pNLCt4JxabZex5KOvE=
+			bkesfuLidWvTw0fQsgp3aJ2bPQxNO/9yawkn9DZO60Y=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -299,7 +355,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Js/SFXVdtb+xINVsgp8o+Sn9tlGXJUEpBYT22Vq8Jm0=
+			MbBglvu4VbYNwzBAAUwXmyyIje+983BFlA1meYA4NSc=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -327,7 +383,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FUWZzQFofMcWYfzEWprvdCxVVduj3l4xgChUUjkKqiU=
+			FRWvY8WzKwEqjskUgBEqwnR9/C1aGYfb3W87SLvf6dQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/NativeAssetsManifest.json</key>
@@ -355,7 +411,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RBP/DjvfRf9oiZf7lyeMxgnm+SvcSzkTWSf/wOLV6TY=
+			QY7CE4/+6ZlrBaGQKn6nAZObw4ugo0b8e11nwNJu+Q4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -544,7 +600,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			u8B33uycN+cQakqEFxVavi8GFL98siS6d0kDDK+zw40=
+			bPpchhs5PnJeyFdQvXxigMH83N5CB5DzHJtZx3s7/oY=
 			</data>
 		</dict>
 		<key>__preview.dylib</key>
@@ -552,6 +608,104 @@
 			<key>hash2</key>
 			<data>
 			OwRM97uGIeAxPe1GR3a5qCA5ZfiLrfqwCqtyPTqmrU8=
+			</data>
+		</dict>
+		<key>geolocator_apple_geolocator_apple.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			mnr2YDiNRqh8GSofk4uI9TJUxjYPYoyV0tpUyPjo12k=
+			</data>
+		</dict>
+		<key>geolocator_apple_geolocator_apple.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			p+c+xOFN/pYr5bFknUH/y01YGEb8+JJchzbtJ60mdTI=
+			</data>
+		</dict>
+		<key>geolocator_apple_geolocator_apple.bundle/_CodeSignature/CodeDirectory</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			6FE/Jtiv3FWF1V7BB7r1ekwKuPHbUO16xDk56cBthgQ=
+			</data>
+		</dict>
+		<key>geolocator_apple_geolocator_apple.bundle/_CodeSignature/CodeRequirements</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			mHkgkE6rZQ51eIwFSqCwUk5qgL/HGqMt+NI3phdD+YY=
+			</data>
+		</dict>
+		<key>geolocator_apple_geolocator_apple.bundle/_CodeSignature/CodeRequirements-1</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ZTiT6FN0FdUc8b3H3ahRrRxoWI7I+KHuehqmbNGQu4E=
+			</data>
+		</dict>
+		<key>geolocator_apple_geolocator_apple.bundle/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			kfC3IZk5tlv5HvDRBQtE3tCZO3uUsruNeHAvaTKTO+M=
+			</data>
+		</dict>
+		<key>geolocator_apple_geolocator_apple.bundle/_CodeSignature/CodeSignature</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
+			</data>
+		</dict>
+		<key>package_info_plus_package_info_plus.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			iKycqRvQIOPJRqPW3jCwysMh8QWUF0lJ3b+TlDQfWy8=
+			</data>
+		</dict>
+		<key>package_info_plus_package_info_plus.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			bS2g2NkwIn1CjB2TY7CtbjoS4sm2jFzilxWKdBL8jDE=
+			</data>
+		</dict>
+		<key>package_info_plus_package_info_plus.bundle/_CodeSignature/CodeDirectory</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Q23P1yGDqIoAeMqToOdQUVAJY5mJ+VROLfGprYhfUFM=
+			</data>
+		</dict>
+		<key>package_info_plus_package_info_plus.bundle/_CodeSignature/CodeRequirements</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			mHkgkE6rZQ51eIwFSqCwUk5qgL/HGqMt+NI3phdD+YY=
+			</data>
+		</dict>
+		<key>package_info_plus_package_info_plus.bundle/_CodeSignature/CodeRequirements-1</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			aT8rX4/VnulOTP2gPT1J2w89i0rgi6mZ9MOVU9S0Brg=
+			</data>
+		</dict>
+		<key>package_info_plus_package_info_plus.bundle/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			AZOrDwu8tH1AsIdK6cXIP8SPbNm9d8ZbeeFM9HRmPWg=
+			</data>
+		</dict>
+		<key>package_info_plus_package_info_plus.bundle/_CodeSignature/CodeSignature</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
 			</data>
 		</dict>
 	</dict>
