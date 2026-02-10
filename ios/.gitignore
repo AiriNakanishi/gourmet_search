@@ -34,3 +34,7 @@ Runner/GeneratedPluginRegistrant.*
 !default.perspectivev3
 
 .env
+.dart_tool/
+app.dill
+.flutter-plugins
+.flutter-plugins-dependencies
