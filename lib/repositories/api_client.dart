@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../models/restaurant.dart';
+import 'dart:convert';
 
 class ApiClient {
   final Dio _dio = Dio();
@@ -24,7 +25,11 @@ class ApiClient {
         },
       );
 
-      final List shops = response.data['results']['shop'];
+      final Map<String, dynamic> data = response.data is String
+          ? jsonDecode(response.data)
+          : response.data;
+
+      final List shops = data['results']['shop'] ?? [];
       return shops.map((shop) => Restaurant.fromJson(shop)).toList();
     } catch (e) {
       throw Exception('データの取得に失敗しました: $e');

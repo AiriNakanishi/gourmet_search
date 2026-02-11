@@ -20,13 +20,13 @@ class Restaurant {
   // JSONからクラスに変換するファクトリメソッド
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     return Restaurant(
-      id: json['id'],
-      name: json['name'],
-      address: json['address'],
-      open: json['open'],
-      access: json['access'],
-      logoImage: json['logo_image'],
-      photoImage: json['photo']['pc']['l'], // 大きい画像を取得
+      id: (json['id'] ?? '').toString(),
+      name: (json['name'] ?? '').toString(),
+      address: (json['address'] ?? '').toString(),
+      open: (json['open'] ?? '').toString(),
+      access: (json['access'] ?? '').toString(),
+      logoImage: (json['logo_image'] ?? '').toString(),
+      photoImage: (json['photo']?['pc']?['l'] ?? '').toString(),
     );
   }
 }
