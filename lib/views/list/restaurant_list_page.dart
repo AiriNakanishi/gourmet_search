@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gourmet_search/views/detail/restaurant_detail_page.dart';
 import '../../models/restaurant.dart';
 
 class RestaurantListPage extends StatelessWidget {
@@ -9,7 +10,7 @@ class RestaurantListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('周辺のレストラン')),
+      appBar: AppBar(title: const Text('周辺のcafe')),
       body: restaurants.isEmpty
           ? const Center(child: Text('近くにお店が見つかりませんでした'))
           : ListView.builder(
@@ -45,7 +46,13 @@ class RestaurantListPage extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     onTap: () {
-                      // TODO: 詳細画面へ（Step 5）
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              RestaurantDetailPage(restaurant: shop),
+                        ),
+                      );
                     },
                   ),
                 );

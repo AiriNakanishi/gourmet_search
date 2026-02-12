@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:gourmet_search/repositories/api_client.dart';
 import 'package:gourmet_search/views/list/restaurant_list_page.dart';
+import 'package:gourmet_search/constants/app_color.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -49,7 +50,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("レストラン検索")),
+      appBar: AppBar(title: const Text("cafe検索")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -61,6 +62,43 @@ class _SearchPageState extends State<SearchPage> {
               child: const Text("① 現在地を取得"),
             ),
             const SizedBox(height: 10),
+            Text(
+              "検索半径を選択",
+              style: TextStyle(
+                color: AppColor.text.primary,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: AppColor.brand.secondary),
+              ),
+              child: DropdownButton<int>(
+                value: selectedRange, // 以前定義した変数
+                underline: const SizedBox(), // 下線を消すとおしゃれ
+                icon: Icon(
+                  Icons.arrow_drop_down,
+                  color: AppColor.brand.secondary,
+                ),
+                items: _rangeOptions.map((option) {
+                  return DropdownMenuItem<int>(
+                    value: option['value'],
+                    child: Text(option['label']),
+                  );
+                }).toList(),
+                onChanged: (int? newValue) {
+                  if (newValue != null) {
+                    setState(() {
+                      selectedRange = newValue;
+                    });
+                  }
+                },
+              ),
+            ),
+
             ElevatedButton(
               onPressed: _currentPosition == null
                   ? null
@@ -98,3 +136,11 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
+
+final List<Map<String, dynamic>> _rangeOptions = [
+  {'label': '300m', 'value': 1},
+  {'label': '500m', 'value': 2},
+  {'label': '1000m', 'value': 3},
+  {'label': '2000m', 'value': 4},
+  {'label': '3000m', 'value': 5},
+];

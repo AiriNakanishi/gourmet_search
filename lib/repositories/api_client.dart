@@ -20,6 +20,7 @@ class ApiClient {
           'lat': lat,
           'lng': lng,
           'range': range, // 1:300m, 2:500m...
+          'genre': 'G014', // カフェ・スイーツ
           'format': 'json',
           'count': 20, // 最初の1ページ分 [cite: 25]
         },
