@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:gourmet_search/repositories/api_client.dart';
 import 'package:gourmet_search/views/list/restaurant_list_page.dart';
 import 'package:gourmet_search/constants/app_color.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -64,10 +65,7 @@ class _SearchPageState extends State<SearchPage> {
           children: [
             Text(_locationMessage, textAlign: TextAlign.center),
             const SizedBox(height: 20),
-            // ElevatedButton(
-            //   onPressed: _getCurrentLocation,
-            //   child: const Text("① 現在地を取得"),
-            // ),
+
             const SizedBox(height: 10),
             Text(
               "検索半径を選択",
