@@ -48,6 +48,13 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    // 画面が開いたらすぐに現在地を取得し始める
+    _getCurrentLocation();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("cafe検索")),
@@ -57,10 +64,10 @@ class _SearchPageState extends State<SearchPage> {
           children: [
             Text(_locationMessage, textAlign: TextAlign.center),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _getCurrentLocation,
-              child: const Text("① 現在地を取得"),
-            ),
+            // ElevatedButton(
+            //   onPressed: _getCurrentLocation,
+            //   child: const Text("① 現在地を取得"),
+            // ),
             const SizedBox(height: 10),
             Text(
               "検索半径を選択",
