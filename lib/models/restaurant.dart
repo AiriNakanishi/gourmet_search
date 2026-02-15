@@ -6,6 +6,8 @@ class Restaurant {
   final String access;
   final String logoImage;
   final String photoImage;
+  final double lat;
+  final double lng;
 
   Restaurant({
     required this.id,
@@ -15,6 +17,8 @@ class Restaurant {
     required this.access,
     required this.logoImage,
     required this.photoImage,
+    required this.lat,
+    required this.lng,
   });
 
   // JSONからクラスに変換するファクトリメソッド
@@ -27,6 +31,8 @@ class Restaurant {
       access: (json['access'] ?? '').toString(),
       logoImage: (json['logo_image'] ?? '').toString(),
       photoImage: (json['photo']?['pc']?['l'] ?? '').toString(),
+      lat: double.tryParse(json['lat'].toString()) ?? 0.0,
+      lng: double.tryParse(json['lng'].toString()) ?? 0.0,
     );
   }
 }

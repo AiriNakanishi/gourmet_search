@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:gourmet_search/constants/app_color.dart';
 import '../../models/restaurant.dart';
 
 class RestaurantDetailPage extends StatelessWidget {
   final Restaurant restaurant;
+  final String distanceText;
+  final int walkingMinutes;
 
-  const RestaurantDetailPage({super.key, required this.restaurant});
+  const RestaurantDetailPage({
+    super.key,
+    required this.restaurant,
+    required this.distanceText,
+    required this.walkingMinutes,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +43,7 @@ class RestaurantDetailPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
+
                   _buildInfoSection(
                     Icons.location_on,
                     '住所',
@@ -46,6 +55,11 @@ class RestaurantDetailPage extends StatelessWidget {
                     'アクセス',
                     restaurant.access,
                   ),
+                  _buildInfoSection(
+                    null,
+                    '距離・時間',
+                    '現在地から $distanceText (徒歩約$walkingMinutes分)',
+                  ),
                 ],
               ),
             ),
@@ -56,14 +70,19 @@ class RestaurantDetailPage extends StatelessWidget {
   }
 
   // 情報を綺麗に並べるための補助パーツ
-  Widget _buildInfoSection(IconData icon, String label, String content) {
+  Widget _buildInfoSection(IconData? icon, String label, String content) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: AppColor.brand.secondary),
-          const SizedBox(width: 12),
+          if (icon != null) ...[
+            Icon(icon, color: AppColor.brand.secondary),
+            const SizedBox(width: 12),
+          ] else
+            // アイコンがないなら、同じサイズ(24)の「透明な箱」を置いて場所取りする
+            const SizedBox(width: 36),
+
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

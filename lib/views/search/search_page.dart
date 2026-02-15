@@ -121,8 +121,12 @@ class _SearchPageState extends State<SearchPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  RestaurantListPage(restaurants: results),
+                              builder: (context) => RestaurantListPage(
+                                restaurants: results,
+                                userLat: _currentPosition!.latitude, // 自分の緯度を渡す
+                                userLng:
+                                    _currentPosition!.longitude, // 自分の経度を渡す
+                              ),
                             ),
                           );
                         }
