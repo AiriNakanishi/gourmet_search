@@ -3,6 +3,9 @@
         android:label="gourmet_search"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAQpgJ3inpPPmOBC-P1VxJe641VA7EaIaU"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
