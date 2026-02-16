@@ -10,8 +10,9 @@ class ApiClient {
   Future<List<Restaurant>> fetchRestaurants(
     double lat,
     double lng,
-    int range,
-  ) async {
+    int range, {
+    int start = 1,
+  }) async {
     try {
       final response = await _dio.get(
         'https://webservice.recruit.co.jp/hotpepper/gourmet/v1/',
@@ -23,6 +24,7 @@ class ApiClient {
           'genre': 'G014', // カフェ・スイーツ
           'format': 'json',
           'count': 20, // 最初の1ページ分 [cite: 25]
+          'start': start,
         },
       );
 

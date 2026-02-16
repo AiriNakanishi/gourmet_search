@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gourmet_search/constants/app_color.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:gourmet_search/repositories/api_client.dart';
 import 'package:gourmet_search/views/detail/restaurant_detail_page.dart';
 import '../../models/restaurant.dart';
 import 'package:geolocator/geolocator.dart';
@@ -9,12 +10,14 @@ class RestaurantListPage extends StatefulWidget {
   final List<Restaurant> restaurants;
   final double userLat;
   final double userLng;
+  final int range;
 
   const RestaurantListPage({
     super.key,
     required this.restaurants,
     required this.userLat,
     required this.userLng,
+    required this.range,
   });
 
   @override
@@ -23,25 +26,77 @@ class RestaurantListPage extends StatefulWidget {
 
 class _RestaurantListPageState extends State<RestaurantListPage> {
   GoogleMapController? _mapController;
+  List<Restaurant> _restaurantList = [];
+  final ScrollController _scrollController = ScrollController();
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // 最初のデータをセット
+    _restaurantList = widget.restaurants;
+
+    // スクロール監視を開始
+    _scrollController.addListener(() {
+      // 「一番下」の少し手前まで来たら読み込み開始
+      if (_scrollController.position.pixels >=
+              _scrollController.position.maxScrollExtent - 200 &&
+          !_isLoading) {
+        _loadMore();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose(); // メモリリーク防止
+    super.dispose();
+  }
+
+  // ★重要4: 追加データを読み込む関数
+  Future<void> _loadMore() async {
+    setState(() {
+      _isLoading = true; // 読み込み中マークを出す
+    });
+
+    try {
+      final apiClient = ApiClient();
+      // 次の開始位置 = 今持っている数 + 1 (例: 10個持ってたら11番目から)
+      int nextStart = _restaurantList.length + 1;
+
+      // APIを叩く
+      List<Restaurant> newRestaurants = await apiClient.fetchRestaurants(
+        widget.userLat,
+        widget.userLng,
+        widget.range,
+        start: nextStart, // ここがポイント！
+      );
+
+      if (newRestaurants.isNotEmpty) {
+        setState(() {
+          // リストに追加する
+          _restaurantList.addAll(newRestaurants);
+        });
+      }
+    } catch (e) {
+      // エラー処理（今回はコンソールに出すだけ）
+      debugPrint("追加読み込みエラー: $e");
+    } finally {
+      setState(() {
+        _isLoading = false; // 読み込み完了
+      });
+    }
+  }
 
   // ピン（マーカー）のリストを作る関数
   Set<Marker> _createMarkers() {
     final Set<Marker> markers = {};
-
-    // 1. ユーザーの現在地のピン（青色に変えたいですが、まずは標準の赤で）
-    // ※ myLocationEnabled: true にするので、ここでの追加は必須ではありませんが
-    //   「中心」として意識するために追加してもOK。今回はシステム標準の青点を使うので省略します。
-
-    // 2. お店のピンを全部追加
-    for (var shop in widget.restaurants) {
+    for (var shop in _restaurantList) {
       markers.add(
         Marker(
-          markerId: MarkerId(shop.name), // IDはユニークなもの（名前やID）
-          position: LatLng(shop.lat, shop.lng), // お店の場所
-          infoWindow: InfoWindow(
-            title: shop.name, // タップすると店名が出る
-            snippet: shop.access, // サブタイトル
-          ),
+          markerId: MarkerId(shop.id),
+          position: LatLng(shop.lat, shop.lng),
+          infoWindow: InfoWindow(title: shop.name, snippet: shop.access),
         ),
       );
     }
@@ -67,7 +122,6 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
               },
               myLocationEnabled: true, // 青い現在地マーク
               myLocationButtonEnabled: true, // 現在地に戻るボタン
-              // ★ここがポイント：作ったピンをセットする
               markers: _createMarkers(),
             ),
           ),
@@ -77,9 +131,20 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
             child: widget.restaurants.isEmpty
                 ? const Center(child: Text('近くにお店が見つかりませんでした'))
                 : ListView.builder(
-                    itemCount: widget.restaurants.length,
+                    controller: _scrollController, // ★スクロールコントローラーをセット
+                    padding: const EdgeInsets.only(top: 8),
+                    itemCount: _restaurantList.length + (_isLoading ? 1 : 0),
                     itemBuilder: (context, index) {
-                      final shop = widget.restaurants[index];
+                      if (index == _restaurantList.length) {
+                        return const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
+
+                      final shop = _restaurantList[index];
 
                       double distanceInMeters = Geolocator.distanceBetween(
                         widget.userLat,
