@@ -3,3 +3,4 @@
 .fvm/
 
 **/.env
+.dart_tool/
