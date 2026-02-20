@@ -20,7 +20,7 @@ class _Brand {
 
 class _Text {
   final Color primary = const Color(0xFF373737);
-  final Color appBarTitle = const Color(0xFFff69b4);
+  final Color secondary = const Color(0xFFff69b4);
   final Color gray = const Color(0xFF808080);
 
   final Color blackMid = const Color(0x61000000);
@@ -31,7 +31,8 @@ class _Text {
 }
 
 class _Ui {
-  final Color logo = const Color(0xFFFF9857);
+  final Color primary = const Color(0xFFff69b4);
+  final Color lightPink = const Color(0XFFF7ADC3);
 
   final Color white = const Color(0xFFFFFFFF);
   final Color black = const Color(0xFF000000);

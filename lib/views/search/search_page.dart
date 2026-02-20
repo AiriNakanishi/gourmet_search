@@ -120,7 +120,6 @@ class _SearchPageState extends State<SearchPage> {
                     Text(_locationMessage, textAlign: TextAlign.center),
                     const SizedBox(height: 20),
 
-                    const SizedBox(height: 10),
                     Text(
                       "検索半径を選択",
                       style: TextStyle(

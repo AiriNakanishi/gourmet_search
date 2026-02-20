@@ -23,11 +23,11 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
         appBarTheme: AppBarTheme(
-          foregroundColor: AppColor.text.appBarTitle,
+          foregroundColor: AppColor.text.secondary,
           titleTextStyle: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: AppColor.text.appBarTitle,
+            color: AppColor.text.secondary,
           ),
         ),
       ), //食店っぽい色
