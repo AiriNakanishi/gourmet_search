@@ -1,5 +1,8 @@
-
+build/
 # FVM Version Cache
 .fvm/
 
 **/.env
+.dart_tool/
+
+ios/Runner/Secrets.swift

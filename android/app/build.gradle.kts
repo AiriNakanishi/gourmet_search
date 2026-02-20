@@ -28,6 +28,13 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        def localProperties = new Properties()
+        def localPropertiesFile = rootProject.file('local.properties')
+        if (localPropertiesFile.exists()) {
+            localProperties.load(new FileInputStream(localPropertiesFile))
+        }
+        manifestPlaceholders = [MAPS_API_KEY: localProperties.getProperty('GOOGLE_MAPS_API_KEY') ?: ""]
     }
 
     buildTypes {
