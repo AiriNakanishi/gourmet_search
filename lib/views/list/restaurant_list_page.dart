@@ -201,6 +201,7 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
                                 shop.access, // アクセス
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
+                                style: TextStyle(color: AppColor.text.darkgray),
                               ),
                               const SizedBox(height: 4),
                               Row(
@@ -208,12 +209,12 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
                                   Icon(
                                     Icons.directions_walk,
                                     size: 16,
-                                    color: Colors.pink[300],
+                                    color: AppColor.ui.primary,
                                   ),
                                   Text(
                                     " $distanceText (約$walkingMinutes分)",
                                     style: TextStyle(
-                                      color: Colors.pink[400],
+                                      color: AppColor.text.gray,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 12,
                                     ),
