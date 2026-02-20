@@ -88,20 +88,26 @@ class _SearchPageState extends State<SearchPage> {
                         color: AppColor.brand.secondary,
                       ),
                     )
-                  : GoogleMap(
-                      onMapCreated: (GoogleMapController controller) {
-                        _mapController = controller;
-                      },
-                      // 初期位置を現在地に設定
-                      initialCameraPosition: CameraPosition(
-                        target: LatLng(
-                          _currentPosition!.latitude,
-                          _currentPosition!.longitude,
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: GoogleMap(
+                          onMapCreated: (GoogleMapController controller) {
+                            _mapController = controller;
+                          },
+                          // 初期位置を現在地に設定
+                          initialCameraPosition: CameraPosition(
+                            target: LatLng(
+                              _currentPosition!.latitude,
+                              _currentPosition!.longitude,
+                            ),
+                            zoom: 15.0,
+                          ),
+                          myLocationEnabled: true, // 青い現在地マーク
+                          myLocationButtonEnabled: true, // 現在地に戻る
                         ),
-                        zoom: 15.0,
                       ),
-                      myLocationEnabled: true, // 青い現在地マーク
-                      myLocationButtonEnabled: true, // 現在地に戻る
                     ),
             ),
 

@@ -4,3 +4,5 @@ build/
 
 **/.env
 .dart_tool/
+
+ios/Runner/Secrets.swift

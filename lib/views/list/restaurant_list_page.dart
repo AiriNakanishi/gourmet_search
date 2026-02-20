@@ -111,18 +111,24 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
         children: [
           Expanded(
             flex: 1, // 画面の半分
-            child: GoogleMap(
-              initialCameraPosition: CameraPosition(
-                // 最初は「自分の場所」を中心に表示
-                target: LatLng(widget.userLat, widget.userLng),
-                zoom: 14.0, // 少し広域に見えるように
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    // 最初は「自分の場所」を中心に表示
+                    target: LatLng(widget.userLat, widget.userLng),
+                    zoom: 14.0, // 少し広域に見えるように
+                  ),
+                  onMapCreated: (GoogleMapController controller) {
+                    _mapController = controller;
+                  },
+                  myLocationEnabled: true, // 青い現在地マーク
+                  myLocationButtonEnabled: true, // 現在地に戻るボタン
+                  markers: _createMarkers(),
+                ),
               ),
-              onMapCreated: (GoogleMapController controller) {
-                _mapController = controller;
-              },
-              myLocationEnabled: true, // 青い現在地マーク
-              myLocationButtonEnabled: true, // 現在地に戻るボタン
-              markers: _createMarkers(),
             ),
           ),
 
@@ -225,6 +231,8 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
                                   restaurant: shop,
                                   distanceText: distanceText,
                                   walkingMinutes: walkingMinutes,
+                                  userLat: widget.userLat,
+                                  userLng: widget.userLng,
                                 ),
                               ),
                             );
