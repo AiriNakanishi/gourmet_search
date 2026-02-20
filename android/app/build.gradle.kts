@@ -34,7 +34,7 @@ android {
         if (localPropertiesFile.exists()) {
             localProperties.load(new FileInputStream(localPropertiesFile))
         }
-        manifestPlaceholders = [googleMapsApiKey: localProperties['google.maps.key']]
+        manifestPlaceholders = [MAPS_API_KEY: localProperties.getProperty('GOOGLE_MAPS_API_KEY') ?: ""]
     }
 
     buildTypes {
