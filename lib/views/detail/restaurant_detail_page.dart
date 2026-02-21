@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:gourmet_search/constants/app_color.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../models/restaurant.dart';
 
 class RestaurantDetailPage extends StatelessWidget {
@@ -20,6 +21,23 @@ class RestaurantDetailPage extends StatelessWidget {
     required this.userLng,
   });
 
+  Future<void> _openGoogleMaps() async {
+    final String urlString =
+        "comgooglemaps://?saddr=$userLat,$userLng&daddr=${restaurant.lat},${restaurant.lng}&directionsmode=walking";
+    final Uri url = Uri.parse(urlString);
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      final String webUrlString =
+          "https://www.google.com/maps/dir/?api=1&origin=$userLat,$userLng&destination=${restaurant.lat},${restaurant.lng}&travelmode=walking";
+      await launchUrl(
+        Uri.parse(webUrlString),
+        mode: LaunchMode.externalApplication,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double distanceInMeters = Geolocator.distanceBetween(
@@ -34,10 +52,16 @@ class RestaurantDetailPage extends StatelessWidget {
     int walkingMinutes = (distanceInMeters / 80).ceil();
 
     return Scaffold(
-      appBar: AppBar(title: Text(restaurant.name)),
+      appBar: AppBar(
+        title: Text(restaurant.name),
+        elevation: 1,
+        scrolledUnderElevation: 1,
+        surfaceTintColor: Colors.transparent,
+        shadowColor: AppColor.ui.gray,
+      ),
       body: Column(
         children: [
-          // ■ 上半分：地図エリア (元のコードのまま)
+          // ■ 上半分：地図エリア
           Expanded(
             flex: 1,
             child: Padding(
@@ -49,7 +73,6 @@ class RestaurantDetailPage extends StatelessWidget {
                     target: LatLng(restaurant.lat, restaurant.lng), // お店が中心
                     zoom: 14.0, // 一覧より少しズームして詳細を見やすく
                   ),
-                  // お店のピンを1つだけ立てる
                   markers: {
                     Marker(
                       markerId: MarkerId(restaurant.id),
@@ -73,13 +96,11 @@ class RestaurantDetailPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // ★ 変更部分：画像と店名を横並びにするレイアウト
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // 左側：お店の画像（正方形＆角丸＆影付き）
                           Container(
                             width: 120,
                             height: 120,
@@ -97,7 +118,7 @@ class RestaurantDetailPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(16),
                               child: Image.network(
                                 restaurant.photoImage,
-                                fit: BoxFit.cover, // 枠いっぱいにトリミング
+                                fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) =>
                                     Container(
                                       color: Colors.grey[200],
@@ -107,7 +128,7 @@ class RestaurantDetailPage extends StatelessWidget {
                             ),
                           ),
 
-                          const SizedBox(width: 16), // 画像と文字の隙間
+                          const SizedBox(width: 16),
                           // 右側：店名とタグ
                           Expanded(
                             child: Column(
@@ -117,14 +138,13 @@ class RestaurantDetailPage extends StatelessWidget {
                                 Text(
                                   restaurant.name,
                                   style: const TextStyle(
-                                    fontSize: 18, // 長い名前も入りやすいように少しだけサイズ調整
+                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                     height: 1.2,
                                   ),
                                 ),
                                 const SizedBox(height: 8),
 
-                                // 2. 距離と時間（リスト画面と同じデザイン！）
                                 Row(
                                   children: [
                                     Icon(
@@ -137,7 +157,7 @@ class RestaurantDetailPage extends StatelessWidget {
                                       child: Text(
                                         " $distanceText (約$walkingMinutes分)",
                                         style: TextStyle(
-                                          color: AppColor.text.gray,
+                                          color: AppColor.text.darkgray,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 13,
                                         ),
@@ -146,25 +166,55 @@ class RestaurantDetailPage extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 12),
+                                const SizedBox(height: 4),
 
+                                GestureDetector(
+                                  onTap: _openGoogleMaps, // タップで関数を実行！
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.open_in_new,
+                                        size: 14,
+                                        color: AppColor.ui.primary,
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        "Googleマップで経路を見る",
+                                        style: TextStyle(
+                                          color: AppColor.text.secondary,
+                                          fontSize: 12,
+                                          decoration: TextDecoration.underline,
+                                          decorationColor:
+                                              AppColor.text.secondary,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 12), // タグとの隙間
                                 // 3. タグ
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 4,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.pink[50],
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  child: Text(
-                                    "カフェ・スイーツ",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: AppColor.text.secondary,
-                                    ),
-                                  ),
+                                Wrap(
+                                  spacing: 8, // タグ同士の横の隙間
+                                  runSpacing: 4, // 画面端で折り返した時の縦の隙間
+                                  children: restaurant.genres.map((genreText) {
+                                    return Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 8,
+                                        vertical: 4,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.pink[50],
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Text(
+                                        genreText,
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: AppColor.text.secondary,
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
                                 ),
                               ],
                             ),

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.pinkAccent,
-          primary: AppColor.brand.secondary, // 優しいピンク
+          primary: AppColor.brand.secondary,
         ),
         useMaterial3: true,
         appBarTheme: AppBarTheme(
@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
             color: AppColor.text.secondary,
           ),
         ),
-      ), //食店っぽい色
-      home: const SearchPage(), // 検索画面を最初に表示
+      ),
+      home: const SearchPage(),
     );
   }
 }
