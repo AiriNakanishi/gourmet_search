@@ -5,6 +5,7 @@ import 'package:gourmet_search/constants/app_color.dart';
 import '../../models/restaurant.dart';
 import '../../repositories/api_client.dart';
 import '../list/restaurant_list_page.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -45,7 +46,16 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
-    _getCurrentLocation();
+    _initialize();
+    // _getCurrentLocation();
+  }
+
+  Future<void> _initialize() async {
+    // 1. 位置情報の取得を待つ
+    await _getCurrentLocation();
+
+    // 2. 位置情報が取れた（またはタイムアウトした）らスプラッシュ画面を消す
+    FlutterNativeSplash.remove();
   }
 
   // 現在地を取得する関数
@@ -239,7 +249,6 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                       ),
 
-                      // 2. 右側に重ねる：縦型の距離調整スライダー
                       Positioned(
                         right: 24,
                         top: 100, // 上からの位置
