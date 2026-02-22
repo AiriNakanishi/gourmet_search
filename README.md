@@ -35,14 +35,33 @@ https://github.com/AiriNakanishi/gourmet_search
 - **フレームワーク**: Flutter 3.32.8 (FVM管理)
 - **言語**: Dart 3.8.1
 
-### 開発言語
-Dart 3.8.1
-
 ### テーブル定義(ER図)などの設計ドキュメント（ウェブアプリ）
 なし
 
-### 開発環境構築手順(ウェブアプリ)
-なし
+### 開発環境構築手順
+本プロジェクトは、Flutterのバージョン管理に `fvm` を使用しています。
+
+#### 1. リポジトリのクローン
+```
+git clone https://github.com/AiriNakanishi/gourmet_search.git
+cd gourmet_search
+```
+
+#### 2. Flutter環境のセットアップ
+```
+fvm install
+fvm flutter pub get
+```
+
+#### 3. APIキーの設定
+1.  プロジェクトのルートディレクトリに`.env` ファイルを作成してください（`.env.example` ファイルを参考にしてください）。
+2. `android/app/src/main/AndroidManifest.xml` 内の `${MAPS_API_KEY}` 部分に自身のAPIキーを設定してください。
+3. `ios/Runner/AppDelegate.swift` 内の `Secrets.googleMapsApiKey` 部分に自身のAPIキーを設定してください。
+
+#### 4. アプリの実行
+```
+fvm flutter run
+```
 
 ## 動作対象端末・OS
 ### 動作対象OS
