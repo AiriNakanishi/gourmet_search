@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:gourmet_search/constants/app_color.dart';
 import 'package:gourmet_search/views/search/search_page.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
 
@@ -15,11 +18,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'kawaii Gourmet Search',
+      title: 'もぐあし',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.pinkAccent,
-          primary: AppColor.brand.secondary, // 優しいピンク
+          primary: AppColor.brand.secondary,
         ),
         useMaterial3: true,
         appBarTheme: AppBarTheme(
@@ -30,8 +33,8 @@ class MyApp extends StatelessWidget {
             color: AppColor.text.secondary,
           ),
         ),
-      ), //食店っぽい色
-      home: const SearchPage(), // 検索画面を最初に表示
+      ),
+      home: const SearchPage(),
     );
   }
 }

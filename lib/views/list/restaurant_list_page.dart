@@ -11,6 +11,7 @@ class RestaurantListPage extends StatefulWidget {
   final double userLat;
   final double userLng;
   final int range;
+  final String genreCode;
 
   const RestaurantListPage({
     super.key,
@@ -18,6 +19,7 @@ class RestaurantListPage extends StatefulWidget {
     required this.userLat,
     required this.userLng,
     required this.range,
+    this.genreCode = '',
   });
 
   @override
@@ -53,10 +55,67 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
     super.dispose();
   }
 
-  // ★重要4: 追加データを読み込む関数
+  String _getRangeText(int range) {
+    switch (range) {
+      case 1:
+        return "300m";
+      case 2:
+        return "500m";
+      case 3:
+        return "1km";
+      case 4:
+        return "2km";
+      case 5:
+        return "3km";
+      default:
+        return "1km";
+    }
+  }
+
+  String _getGenreText(String genreCode) {
+    switch (genreCode) {
+      case 'G014':
+        return 'カフェ・スイーツ';
+      case 'G001':
+        return '居酒屋';
+      case 'G008':
+        return '焼肉・ホルモン';
+      case 'G013':
+        return 'ラーメン';
+      case 'G004':
+        return '和食';
+      case 'G006':
+        return 'イタリアン・フレンチ';
+      case 'G007':
+        return '中華';
+      case 'G005':
+        return '洋食';
+      case 'G017':
+        return '韓国料理';
+      case 'G016':
+        return 'お好み焼き・もんじゃ';
+      case 'G002':
+        return 'ダイニングバー・バル';
+      case 'G012':
+        return 'バー・カクテル';
+      case 'G009':
+        return 'アジア・エスニック料理';
+      case 'G003':
+        return '創作料理';
+      case 'G010':
+        return '各国料理';
+      case 'G011':
+        return 'カラオケ・パーティ';
+      case 'G015':
+        return 'その他グルメ';
+      default:
+        return '飲食店';
+    }
+  }
+
   Future<void> _loadMore() async {
     setState(() {
-      _isLoading = true; // 読み込み中マークを出す
+      _isLoading = true;
     });
 
     try {
@@ -69,7 +128,8 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
         widget.userLat,
         widget.userLng,
         widget.range,
-        start: nextStart, // ここがポイント！
+        start: nextStart,
+        genre: widget.genreCode,
       );
 
       if (newRestaurants.isNotEmpty) {
@@ -106,20 +166,27 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('周辺のcafe')),
+      appBar: AppBar(
+        title: Text(
+          '${_getRangeText(widget.range)}圏内の${_getGenreText(widget.genreCode)}',
+        ),
+        elevation: 1,
+        scrolledUnderElevation: 1,
+        surfaceTintColor: Colors.transparent,
+        shadowColor: AppColor.ui.gray,
+      ),
       body: Column(
         children: [
           Expanded(
-            flex: 1, // 画面の半分
+            flex: 1,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: GoogleMap(
                   initialCameraPosition: CameraPosition(
-                    // 最初は「自分の場所」を中心に表示
                     target: LatLng(widget.userLat, widget.userLng),
-                    zoom: 14.0, // 少し広域に見えるように
+                    zoom: 14.0,
                   ),
                   onMapCreated: (GoogleMapController controller) {
                     _mapController = controller;
@@ -137,7 +204,7 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
             child: widget.restaurants.isEmpty
                 ? const Center(child: Text('近くにお店が見つかりませんでした'))
                 : ListView.builder(
-                    controller: _scrollController, // ★スクロールコントローラーをセット
+                    controller: _scrollController,
                     padding: const EdgeInsets.only(top: 8),
                     itemCount: _restaurantList.length + (_isLoading ? 1 : 0),
                     itemBuilder: (context, index) {

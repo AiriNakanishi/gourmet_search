@@ -12,20 +12,26 @@ class ApiClient {
     double lng,
     int range, {
     int start = 1,
+    String genre = '',
   }) async {
     try {
+      final Map<String, dynamic> queryParams = {
+        'key': _apiKey,
+        'lat': lat,
+        'lng': lng,
+        'range': range,
+        'format': 'json',
+        'count': 20,
+        'start': start,
+      };
+
+      if (genre.isNotEmpty) {
+        queryParams['genre'] = genre;
+      }
+
       final response = await _dio.get(
         'https://webservice.recruit.co.jp/hotpepper/gourmet/v1/',
-        queryParameters: {
-          'key': _apiKey,
-          'lat': lat,
-          'lng': lng,
-          'range': range, // 1:300m, 2:500m...
-          'genre': 'G014', // カフェ・スイーツ
-          'format': 'json',
-          'count': 20, // 最初の1ページ分 [cite: 25]
-          'start': start,
-        },
+        queryParameters: queryParams,
       );
 
       final Map<String, dynamic> data = response.data is String
@@ -35,7 +41,7 @@ class ApiClient {
       final List shops = data['results']['shop'] ?? [];
       return shops.map((shop) => Restaurant.fromJson(shop)).toList();
     } catch (e) {
-      throw Exception('データの取得に失敗しました: $e');
+      throw Exception('データの取得に失敗: $e');
     }
   }
 }
