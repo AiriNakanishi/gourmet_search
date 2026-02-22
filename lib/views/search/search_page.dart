@@ -10,6 +10,7 @@ import 'package:gourmet_search/views/search/widgets/range_indicator.dart';
 import '../../models/restaurant.dart';
 import '../../repositories/api_client.dart';
 import '../list/restaurant_list_page.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 class SearchPage extends StatefulWidget {
@@ -20,6 +21,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  // ignore: unused_field
   GoogleMapController? _mapController;
   Position? _currentPosition;
   int _selectedRange = 3;

@@ -21,10 +21,8 @@ class DetailHeader extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
-        // 💡 ここで画像とテキストを横に並べます
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 左側：画像
           Container(
             width: 120,
             height: 120,
@@ -32,6 +30,7 @@ class DetailHeader extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
+                  // ignore: deprecated_member_use
                   color: Colors.black.withOpacity(0.1),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
@@ -51,7 +50,6 @@ class DetailHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 16),
-          // 右側：店名などの情報（ここだけ広がる）
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

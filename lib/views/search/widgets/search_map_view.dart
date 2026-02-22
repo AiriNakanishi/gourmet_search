@@ -35,6 +35,7 @@ class SearchMapView extends StatelessWidget {
               circleId: const CircleId('search_range'),
               center: LatLng(lat, lng),
               radius: radius,
+              // ignore: deprecated_member_use
               fillColor: Colors.pink.withOpacity(0.2),
               strokeColor: AppColor.ui.primary,
               strokeWidth: 2,

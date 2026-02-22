@@ -30,6 +30,7 @@ class RestaurantListPage extends StatefulWidget {
 }
 
 class _RestaurantListPageState extends State<RestaurantListPage> {
+  // ignore: unused_field
   GoogleMapController? _mapController;
   List<Restaurant> _restaurantList = [];
   final ScrollController _scrollController = ScrollController();
@@ -66,7 +67,7 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
       final apiClient = ApiClient();
       int nextStart = _restaurantList.length + 1;
 
-      // APIを叩く
+      // API
       List<Restaurant> newRestaurants = await apiClient.fetchRestaurants(
         widget.userLat,
         widget.userLng,
@@ -77,7 +78,6 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
 
       if (newRestaurants.isNotEmpty) {
         setState(() {
-          // リストに追加する
           _restaurantList.addAll(newRestaurants);
         });
       }

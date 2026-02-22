@@ -21,10 +21,12 @@ class RangeIndicator extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         decoration: BoxDecoration(
+          // ignore: deprecated_member_use
           color: Colors.white.withOpacity(0.9),
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
+              // ignore: deprecated_member_use
               color: Colors.black.withOpacity(0.1),
               blurRadius: 10,
               offset: const Offset(0, 4),

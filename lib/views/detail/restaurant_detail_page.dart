@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:gourmet_search/constants/app_color.dart';
 import 'package:gourmet_search/views/detail/widgets/detail_header.dart';
 import 'package:gourmet_search/views/detail/widgets/detail_info_section.dart';
@@ -24,6 +23,7 @@ class RestaurantDetailPage extends StatelessWidget {
     required this.userLng,
   });
 
+  // Googleマップ
   Future<void> _openGoogleMaps() async {
     final String urlString =
         "comgooglemaps://?saddr=$userLat,$userLng&daddr=${restaurant.lat},${restaurant.lng}&directionsmode=walking";
@@ -64,10 +64,7 @@ class RestaurantDetailPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          //地図
           Expanded(flex: 1, child: DetailMapView(restaurant: restaurant)),
-
-          // ■ 下半分：詳細情報エリア
           Expanded(
             flex: 1,
             child: SingleChildScrollView(
