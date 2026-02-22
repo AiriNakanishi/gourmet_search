@@ -41,7 +41,7 @@ class ApiClient {
       final List shops = data['results']['shop'] ?? [];
       return shops.map((shop) => Restaurant.fromJson(shop)).toList();
     } catch (e) {
-      throw Exception('データの取得に失敗: $e');
+      throw Exception('データ取得に失敗: $e');
     }
   }
 }

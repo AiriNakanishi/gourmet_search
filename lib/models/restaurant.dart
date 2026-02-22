@@ -23,7 +23,6 @@ class Restaurant {
     required this.genres,
   });
 
-  // JSONからクラスに変換するファクトリメソッド
   factory Restaurant.fromJson(Map<String, dynamic> json) {
     List<String> extractedGenres = [];
     if (json['genre'] != null && json['genre']['name'] != null) {
